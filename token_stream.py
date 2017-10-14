@@ -1,4 +1,9 @@
 # '2+3' -> {type:num, value: 2}, {type:op, value:'+'}, {type:num, value: 3}
+operators = {
+    '+': {'prec': 10, 'assoc': 'left'},
+    '*': {'prec': 20, 'assoc': 'left'}
+}
+
 class TokenStream:
     def __init__(self, input_stream):
         self.input_stream = input_stream
@@ -10,7 +15,7 @@ class TokenStream:
         return char.isdigit()
 
     def is_operator(self, char):
-        return char in '+*'
+        return char in operators
 
     def read_while(self, predicate_func):
         _str = ""
