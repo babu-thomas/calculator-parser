@@ -10,7 +10,7 @@ class TokenStream:
         return char.isdigit()
 
     def is_operator(self, char):
-        return char in '+'
+        return char in '+*'
 
     def read_while(self, predicate_func):
         _str = ""

@@ -3,7 +3,7 @@ from token_stream import TokenStream
 
 
 def main():
-    scanner = InputStream('  2 + 3  \n')
+    scanner = InputStream('  21 + 3  *  3 \n')
     tokenizer = TokenStream(scanner)
     token = tokenizer.read_next()
     while token:
