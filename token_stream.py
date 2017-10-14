@@ -62,3 +62,6 @@ class TokenStream:
 
     def is_eof(self):
         return self.peek() == None
+
+    def croak(self, msg):
+        self.input_stream.croak(msg)
