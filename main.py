@@ -5,10 +5,8 @@ from token_stream import TokenStream
 def main():
     scanner = InputStream('  21 + 3  *  3 \n')
     tokenizer = TokenStream(scanner)
-    token = tokenizer.read_next()
-    while token:
-        print(token)
-        token = tokenizer.read_next()
+    while not tokenizer.is_eof():
+        print(tokenizer.next())
 
 
 if __name__ == '__main__':

@@ -7,6 +7,8 @@ operators = {
 class TokenStream:
     def __init__(self, input_stream):
         self.input_stream = input_stream
+        self.current = None
+        self.has_peeked = False
 
     def is_whitespace(self, char):
         return char in ' \t'
@@ -43,3 +45,20 @@ class TokenStream:
         self.input_stream.croak("Can't handle character: " + char)
         self.input_stream.next()
         return None
+
+    def next(self):
+        if self.has_peeked:
+            self.has_peeked = False
+            return self.current
+        self.current = self.read_next()
+        return self.current
+
+    def peek(self):
+        if self.has_peeked:
+            return self.current
+        self.current = self.read_next()
+        self.has_peeked = True
+        return self.current
+
+    def is_eof(self):
+        return self.peek() == None
