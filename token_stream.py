@@ -10,38 +10,38 @@ class TokenStream:
         self.current = None
         self.has_peeked = False
 
-    def is_whitespace(self, char):
+    def _is_whitespace(self, char):
         return char in ' \t'
 
-    def is_digit(self, char):
+    def _is_digit(self, char):
         return char.isdigit()
 
-    def is_operator(self, char):
+    def _is_operator(self, char):
         return char in operators
 
-    def read_while(self, predicate_func):
+    def _read_while(self, predicate_func):
         _str = ""
         while not self.input_stream.is_eof() and predicate_func(self.input_stream.peek()):
             _str += self.input_stream.next()
         return _str
 
-    def read_number(self):
-        number = self.read_while(self.is_digit)
+    def _read_number(self):
+        number = self._read_while(self._is_digit)
         return {'type': 'num', 'value': int(number)}
 
-    def read_operator(self):
-        operator = self.read_while(self.is_operator)
+    def _read_operator(self):
+        operator = self._read_while(self._is_operator)
         return {'type': 'op', 'value': operator}
 
-    def read_next(self):
-        _ = self.read_while(self.is_whitespace)
+    def _read_next(self):
+        _ = self._read_while(self._is_whitespace)
         if self.input_stream.is_eof():
             return None
         char = self.input_stream.peek()
-        if self.is_digit(char):
-            return self.read_number()
-        if self.is_operator(char):
-            return self.read_operator()
+        if self._is_digit(char):
+            return self._read_number()
+        if self._is_operator(char):
+            return self._read_operator()
         self.input_stream.croak("Can't handle character: " + char)
         self.input_stream.next()
         return None
@@ -50,13 +50,13 @@ class TokenStream:
         if self.has_peeked:
             self.has_peeked = False
             return self.current
-        self.current = self.read_next()
+        self.current = self._read_next()
         return self.current
 
     def peek(self):
         if self.has_peeked:
             return self.current
-        self.current = self.read_next()
+        self.current = self._read_next()
         self.has_peeked = True
         return self.current
 
