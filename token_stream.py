@@ -30,8 +30,7 @@ class TokenStream:
         return {'type': 'num', 'value': int(number)}
 
     def _read_operator(self):
-        operator = self._read_while(self._is_operator)
-        return {'type': 'op', 'value': operator}
+        return {'type': 'op', 'value': self.input_stream.next()}
 
     def _read_next(self):
         _ = self._read_while(self._is_whitespace)
