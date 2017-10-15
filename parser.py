@@ -35,8 +35,26 @@ class Parser():
         self.unexpected_token('num', actual)
         return None
 
+    def _parse_expression(self, left, current_prec):
+        if left and self._is_op():
+            op_token = self.token_stream.peek()
+            next_prec = operators[op_token['value']]['prec']
+            if next_prec >= current_prec:
+                self.token_stream.next()
+                if operators[op_token['value']]['assoc'] == 'left':
+                    new_prec = next_prec+1
+                else:
+                    new_prec = next_prec
+                right = self._parse_expression(self._parse_num(), new_prec)
+                ast = {'type': 'binary', 'operator': op_token['value'],
+                    'left': left, 'right': right}
+                return self._parse_expression(ast, current_prec)
+
+        return left
+
+
     def parse(self):
-        return self._parse_num()
+        return self._parse_expression(self._parse_num(), 0)
 
     def unexpected_token(self, expected_type, actual_token):
         self.token_stream.croak('Expected token of type: ' + expected_type +
