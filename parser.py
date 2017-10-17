@@ -12,8 +12,8 @@ from token_stream import operators, TokenStream
 
 
 class Parser():
-    def __init__(self, token_stream):
-        self.token_stream = token_stream
+    def __init__(self, text):
+        self.token_stream = TokenStream(text)
 
     def _is_op(self, which_op=None):
         token = self.token_stream.peek()

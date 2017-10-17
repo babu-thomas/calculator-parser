@@ -4,9 +4,7 @@ from parser import Parser
 
 
 def main():
-    scanner = InputStream(' *** \n')
-    tokenizer = TokenStream(scanner)
-    parser = Parser(tokenizer)
+    parser = Parser(' 12 + 3 * 4 \n')
     print(parser.parse())
 
 
