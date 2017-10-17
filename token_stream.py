@@ -1,3 +1,5 @@
+from input_stream import InputStream
+
 # '2+3' -> {type:num, value: 2}, {type:op, value:'+'}, {type:num, value: 3}
 operators = {
     '+': {'prec': 10, 'assoc': 'left'},
@@ -5,8 +7,8 @@ operators = {
 }
 
 class TokenStream:
-    def __init__(self, input_stream):
-        self.input_stream = input_stream
+    def __init__(self, text):
+        self.input_stream = InputStream(text)
         self.current = None
         self.has_peeked = False
 
