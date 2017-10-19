@@ -4,7 +4,7 @@ from parser import Parser
 
 
 def main():
-    parser = Parser(' 12 + 3 * 4 \n')
+    parser = Parser(' 12 + 3 * 4 ')
     print(parser.parse())
 
 

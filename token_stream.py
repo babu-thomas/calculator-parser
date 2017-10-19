@@ -8,7 +8,7 @@ operators = {
 
 class TokenStream:
     def __init__(self, text):
-        self.input_stream = InputStream(text)
+        self.input_stream = InputStream(text + '\n')
         self.current = None
         self.has_peeked = False
 
