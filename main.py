@@ -1,5 +1,3 @@
-from input_stream import InputStream
-from token_stream import TokenStream
 from parser import Parser
 
 
