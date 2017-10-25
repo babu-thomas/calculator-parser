@@ -11,7 +11,7 @@
 from token_stream import operators, TokenStream
 
 
-class Parser():
+class Parser:
     def __init__(self, text):
         self.token_stream = TokenStream(text)
 
