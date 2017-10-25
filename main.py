@@ -1,4 +1,4 @@
-from parser import Parser
+from _parser import Parser
 
 def main():
     print('Calculator v0.0.1\nWelcome! Type any expression below then press ENTER to evaluate.\n'
