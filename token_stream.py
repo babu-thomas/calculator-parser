@@ -1,10 +1,12 @@
 from input_stream import InputStream
 
+
 # '2+3' -> {type:num, value: 2}, {type:op, value:'+'}, {type:num, value: 3}
 operators = {
     '+': {'prec': 10, 'assoc': 'left'},
     '*': {'prec': 20, 'assoc': 'left'}
 }
+
 
 class TokenStream:
     def __init__(self, text):
@@ -62,7 +64,7 @@ class TokenStream:
         return self.current
 
     def is_eof(self):
-        return self.peek() == None
+        return self.peek() is None
 
     def croak(self, msg):
         self.input_stream.croak(msg)

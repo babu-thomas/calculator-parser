@@ -17,4 +17,4 @@ class InputStream:
         return self.peek() == '\n'
 
     def croak(self, msg):
-        print (msg, ' (column: ', self.col, ')', sep="")
+        print(msg, ' (column: ', self.col, ')', sep="")

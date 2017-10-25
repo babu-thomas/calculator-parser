@@ -47,15 +47,14 @@ class Parser:
                     new_prec = next_prec
                 right = self._parse_expression(self._parse_num(), new_prec)
                 ast = {'type': 'binary', 'operator': op_token['value'],
-                    'left': left, 'right': right}
+                       'left': left, 'right': right}
                 return self._parse_expression(ast, current_prec)
 
         return left
-
 
     def parse(self):
         return self._parse_expression(self._parse_num(), 0)
 
     def unexpected_token(self, expected_type, actual_token):
         self.token_stream.croak('Expected token of type: ' + expected_type +
-            ', found token: ' + str(actual_token))
+                                ', found token: ' + str(actual_token))
